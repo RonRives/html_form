@@ -1,0 +1,34 @@
+<?php
+    var_dump($_POST);
+
+    $fullname = '';
+    $gender = '';
+    $country = '';
+?>
+
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "wait_lang_sir";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+    echo"Connected successfull";
+
+    $sql = "INSERT INTO student_record (Id, Full_Name,Gender,Country)
+    VALUES ('', '$fullname', '$gender' , '$country')";
+    
+    if ($conn->query($sql) === TRUE) {
+      echo " New record created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+
+    $conn->close();
+?>
